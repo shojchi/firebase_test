@@ -1,0 +1,35 @@
+<div class="login-container">
+
+  <h1 *ngIf="authService.user | async">
+    Welcome User: {{ (authService.user | async)?.email }}!
+  </h1>
+
+
+  <div *ngIf="!(authService.user | async)">
+
+    <input type="text" [(ngModel)]="email" placeholder="Enter email"/>
+    <input type="password" [(ngModel)]="password" placeholder="Enter password"/>
+    <input #changeAdminState type="checkbox" id="changeAdminState" [checked]="isAdmin"
+           (change)="changeState(changeAdminState.checked)">
+    <label for="changeAdminState">Admin mode enable</label>
+
+
+    <button class="btn btn-info" (click)="signup()" [disabled]="!email || !password">
+      Signup
+    </button>
+
+
+    <button class="btn btn-info" (click)="login()" [disabled]="!email || !password">
+      Login
+    </button>
+  </div>
+
+
+  <button class="btn btn-info" (click)="logout()" *ngIf="authService.user | async">
+    Logout
+  </button>
+</div>
+
+<div>
+  <app-customers-host *ngIf="authService.user | async"></app-customers-host>
+</div>

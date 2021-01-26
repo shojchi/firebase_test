@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-12 py-4">
+    <app-customers-list></app-customers-list>
+  </div>
+
+  <div class="col-6">
+    <app-customer-details *ngIf="adminStateHost === true"></app-customer-details>
+  </div>
+</div>
